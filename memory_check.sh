@@ -7,7 +7,7 @@
 # 1. 메모리 확인 함수
 # 시스템의 전체 메모리와 사용 중인 메모리를 계산하여 사용률(%)을 산출합니다.
 check_memory() {
-    # [기존 로직 유지] free 명령어를 통해 메가바이트 단위로 정보를 가져와 GB로 환산합니다.
+    # free 명령어를 통해 메가바이트 단위로 정보를 가져와 GB로 환산합니다.
     total_memory=$(free -m | awk '/Mem:/ {printf "%.1f", $2/1024}')
     used_memory=$(free -m | awk '/Mem:/ {printf "%.1f", $3/1024}')
     
@@ -23,14 +23,14 @@ check_memory() {
 send_to_console() {
     message="$1"
     
-    # [수정] sudo를 사용하여 root 권한으로 실행된 세션까지 모두 탐색합니다.
+    # sudo를 사용하여 root 권한으로 실행된 세션까지 모두 탐색합니다.
     # 키워드(.minecraft_server)가 포함된 세션 아이디만 추출합니다.
     SESSIONS=$(sudo screen -ls | grep ".minecraft_server" | awk '{print $1}')
 
     if [ -n "$SESSIONS" ]; then
         # 찾은 모든 세션에 대해 루프를 돌며 메시지를 전송합니다.
         for SESSION in $SESSIONS; do
-            # [기존 기능 유지] stuff 명령어를 통해 screen 세션 내부에 타이핑 명령을 전달합니다.
+            # stuff 명령어를 통해 screen 세션 내부에 타이핑 명령을 전달합니다.
             # printf '\r'는 엔터 키 입력을 의미합니다.
             sudo screen -S "${SESSION}" -X stuff "say ${message}$(printf '\r')"
             echo "[$(date '+%Y-%m-%d %H:%M:%S')] 전송 완료 [세션: ${SESSION}]: ${message}"
