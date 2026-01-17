@@ -22,7 +22,7 @@ if [ -f "$LOG_FILE" ]; then
 fi
 echo "--- Server starting at $(date) ---" > "$LOG_FILE"
 
-# 2. 기존 스크린 세션 종료 (중복 실행 방지 유지)
+# 2. 기존 스크린 세션 종료 
 if sudo screen -list | grep -q "\.$SCREEN_NAME"; then
     echo "Existing session found. Restarting..."
     sudo screen -S "$SCREEN_NAME" -X quit
