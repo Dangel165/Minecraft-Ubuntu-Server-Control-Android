@@ -4,8 +4,6 @@
 # 마인크래프트 AFK(잠수) 플레이어 보호 스크립트 
 # ============================================================
 
-# [설정 - 개인정보 보호를 위해 변수 처리]
-# 깃허브에 올릴 때는 IP와 비밀번호를 가짜 정보로 수정하세요.
 SERVER_ROOT="$HOME/minecraft"
 LOG_FILE="$SERVER_ROOT/logs/latest.log"      # 서버 로그 파일 경로
 STATE_FILE="$SERVER_ROOT/afk_state.txt"     # AFK 상태 저장용 임시 파일
