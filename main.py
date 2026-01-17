@@ -9,7 +9,7 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-# --- 설정 및 경로 (깃허브 업로드 시 보안을 위해 비워둠) ---
+# --- 설정 및 경로  ---
 API_PASSWORD = ""  # 앱에서 사용할 API 인증 키 (x-api-key)
 SCREEN_NAME = "minecraft_server"  # 실행 중인 리눅스 screen 세션 이름
 BASE_DIR = ""      # 마인크래프트 서버 루트 경로 
@@ -272,4 +272,5 @@ async def send_custom_command(data: CommandModel):
 if __name__ == "__main__":
     import uvicorn
     # 외부 접속 허용 (0.0.0.0), 포트 8050
+
     uvicorn.run(app, host="0.0.0.0", port=8050, access_log=False)
